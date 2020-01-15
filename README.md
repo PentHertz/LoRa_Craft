@@ -26,7 +26,7 @@ The channel frequency, as well as the spread facto and the bandwidth must be set
 
 Note: Multiple frequencies can be used by targets. This would implies to include multiple receivers in GRC.
 
-For more information on how to detect LoRa signal, please take a look at the following post: TODO. 
+For more information on how to detect LoRa signal, please take a look at the following post: https://penthertz.com/blog/testing-LoRa-with-SDR-and-handy-tools.html. 
 
 ### Decode
 
