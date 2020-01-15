@@ -18,11 +18,11 @@ This repository will be completed with others tools soon, depending on needs dur
 
 To receive a signal, an example of a GRC schema is available in folder `grc_examples/usrp_LoRa_decode_to_UDP.grc` for USRP, as shown as follows:
 
-![alt text](https://github.com/FlUxIuS/LoRaCraft/blob/master/img/completeschema.png "Schema to receive LoRa signal")
+![alt text](https://github.com/PentHertz/LoRa_Craft/blob/master/img/completeschema.png "Schema to receive LoRa signal")
 
 The channel frequency, as well as the spread facto and the bandwidth must be set correctly to valid values with the help of the FFT and waterfall sinks:
 
-![alt text](https://github.com/FlUxIuS/LoRaCraft/blob/master/img/frequencydet_zoomout_sf12bw125.png "Waterfall and FFT sinks")
+![alt text](https://github.com/PentHertz/LoRa_Craft/blob/master/img/frequencydet_zoomout_sf12bw125.png "Waterfall and FFT sinks")
 
 Note: Multiple frequencies can be used by targets. This would implies to include multiple receivers in GRC.
 
