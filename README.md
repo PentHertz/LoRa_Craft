@@ -1,8 +1,8 @@
 # LoRa Craft
 
-LoRa Craft is a small set of tools to receive signal with SDR, decode et craft LoRaWAN packets on top of a **gr-lora** GNU Radio module.
+LoRa Craft is a small set of tools to receive signals with SDR, decode et craft LoRaWAN packets on top of a **gr-lora** GNU Radio module.
 
-This repository will be completed with others tools soon, depending on needs during assessments :)
+This repository will be completed with other tools soon, depending on needs during assessments :)
 
 ## Dependencies
 
@@ -10,21 +10,21 @@ This repository will be completed with others tools soon, depending on needs dur
 * Scapy
 * GNU Radio 3.8
 * gr-lora from [rpp0](https://github.com/rpp0): [link here](https://github.com/rpp0/gr-lora)
-* A Software-Defined Radio equipment (USRP, bladeRF, RTL-SDR dongle, etc.)
+* Software-Defined Radio equipment (USRP, bladeRF, RTL-SDR dongle, etc.)
 
 ## Receive signal and decode its data
 
 ### Receive
 
-To receive a signal, an example of a GRC schema is available in folder `grc_examples/usrp_LoRa_decode_to_UDP.grc` for USRP, as shown as follows:
+To receive a signal, an example of a GRC schema is available in the folder `grc_examples/usrp_LoRa_decode_to_UDP.grc` for USRP, as shown as follows:
 
 ![alt text](https://github.com/PentHertz/LoRa_Craft/blob/master/img/completeschema.png "Schema to receive LoRa signal")
 
-The channel frequency, as well as the spread facto and the bandwidth must be set correctly to valid values with the help of the FFT and waterfall sinks:
+The channel frequency, as well as the spreading factor and the bandwidth, must be set correctly to valid values with the help of the FFT and waterfall sinks:
 
 ![alt text](https://github.com/PentHertz/LoRa_Craft/blob/master/img/frequencydet_zoomout_sf12bw125.png "Waterfall and FFT sinks")
 
-Note: Multiple frequencies can be used by targets. This would implies to include multiple receivers in GRC.
+Note: Multiple frequencies can be used by targets. This would imply to include multiple receivers in GRC.
 
 For more information on how to detect LoRa signal, please take a look at the following post: https://penthertz.com/blog/testing-LoRa-with-SDR-and-handy-tools.html. 
 
@@ -58,7 +58,7 @@ $ sudo python LoRa_PHYDecode.py
 
 ## Generate packets
 
-To generate packets, you can instanciate a Scapy packet as follows:
+To generate packets, you can instantiate a Scapy packet as follows:
 
 ```python
 >>> from layers.loraphy import *
@@ -82,7 +82,7 @@ After crafting your packet, you can use [python-loranode](https://github.com/rpp
 >>> c.send_p2p(to_send)
 ```
 
-Note that you should skip the first three bytes (Preambule, PHDR, PHDR_CRC), before sending it with `send_p2p` method.
+Note that you should skip the first three bytes (Preamble, PHDR, PHDR_CRC), before sending it with `send_p2p` method.
 
 ## LoRa crypto helpers
 
