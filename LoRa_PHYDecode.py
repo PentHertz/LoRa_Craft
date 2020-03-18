@@ -6,7 +6,7 @@ from __future__ import print_function
 #    Copyright (C) 2020  Sebastien Dudek (@FlUxIuS) at @PentHertz
 
 import binascii
-from layers.loraphy import *
+from layers.loraphy2wan import *
 import argparse
 
 def decodePHY(pkt):

@@ -61,7 +61,7 @@ $ sudo python LoRa_PHYDecode.py
 To generate packets, you can instantiate a Scapy packet as follows:
 
 ```python
->>> from layers.loraphy import *
+>>> from layers.loraphy2wan import *
 >>> pkt = LoRa()
 >>> pkt
 <LoRa  Join_Request_Field=[''] |>
@@ -96,7 +96,7 @@ Few helpers have been implemented to calculate MIC field, encrypt and decrypt pa
 As an example, to check if the key `000102030405060708090A0B0C0D0E0F` is used to compute MIC on the following Join-request, we can write a little script as follows:
 
 ```python
->>> from layers.loraphy import *
+>>> from layers.loraphy2wan import *
 >>> from lutil.crypto import *
 >>> key = "000102030405060708090A0B0C0D0E0F"
 >>> p = '000000006c6f7665636166656d656565746f6f00696953024c49'
