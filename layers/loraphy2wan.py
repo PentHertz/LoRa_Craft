@@ -3,7 +3,7 @@
 """
     Copyright (C) 2020  Sebastien Dudek (@FlUxIuS)
     initially developed @PentHertz
-    and improve at @Trend Micro
+    and improved at @Trend Micro
 """
 
 from scapy.packet import Packet
