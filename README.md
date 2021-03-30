@@ -116,8 +116,8 @@ To check if `000102030405060708090A0B0C0D0E0F` key is used to encrypt a Join-acc
 'ghi#\x01\x00\xb2\\C\x03\x00\x00{\x06O\x8a'
 >>> Join_Accept(ja)
 <Join_Accept  JoinAppNonce=0x6fe14a NetID=0x10203 DevAddr=0x68e8cb1 OptNeg=0 RX1DRoffset=0x0 RX2_Data_rate=0x0 RxDelay=0x0 |<Padding  load='\xbejsu' |>>
->>> p = "\x00\x00\x00\x20"+ja # adding headers
->>> checkMIC(key.decode("hex"), p)
+>>> p = b"\x00\x00\x00\x20"+ja # adding headers
+>>> checkMIC(binascii.unhexlify(key), p)
 >>> True
 ```
 
