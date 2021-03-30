@@ -13,7 +13,7 @@ def JoinAcceptPayload_decrypt(key, hexpkt):
             In(2): String packet
             Out: String decrypted Join accept packet
     """
-    payload = hexpkt[4:]
+    payload = hexpkt[4:-2] # removing CRC
     cipher = AES.new(key, AES.MODE_ECB)
     return cipher.encrypt(payload)  # logic right? :D
 
