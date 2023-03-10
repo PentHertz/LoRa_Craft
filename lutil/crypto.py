@@ -63,6 +63,7 @@ def checkMIC(key, hexpkt, direction=1):
     except Exception:
         mic = binascii.hexlify(mic)
     cmic = bytes(getPHY_CMAC(key, hexpkt), 'utf-8')
+    print (repr(mic), repr(cmic))
     return (mic == cmic)
 
 # TODO: more helpers

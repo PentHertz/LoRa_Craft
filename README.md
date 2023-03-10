@@ -103,7 +103,7 @@ As an example, to check if the key `000102030405060708090A0B0C0D0E0F` is used to
 >>> pkt = LoRa(binascii.unhexlify(p))
 >>> pkt
 <LoRa  Preamble=0x0 PHDR=0x0 PHDR_CRC=0x0 MType=Join-request RFU=0 Major=0 Join_Request_Field=[<Join_Request  AppEUI='lovecafe' DevEUI='meeetoo' DevNonce=26985 |>] MIC=0x53024c49 |>
->>> checkMIC(binascii.unhexlify(key), str(pkt))
+>>> checkMIC(binascii.unhexlify(key), bytes(pkt))
 True
 ```
 
