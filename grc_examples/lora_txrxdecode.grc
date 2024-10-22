@@ -1,0 +1,202 @@
+options:
+  parameters:
+    author: FlUxIuS
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: hb
+    hier_block_src_path: '.:'
+    id: lora_txrxdecode
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: LoRa TXRX decode
+    window_size: ''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: bandw
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: ''
+    short_id: ''
+    type: ''
+    value: 125e3
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [361, 9]
+    rotation: 0
+    state: true
+- name: lora_lora_receiver_0
+  id: lora_lora_receiver
+  parameters:
+    affinity: ''
+    alias: ''
+    bandwidth: int(bandw)
+    center_freq: 868e6
+    channel_list: 868e6
+    comment: ''
+    conj: 'False'
+    cr: '4'
+    crc: 'True'
+    decimation: '1'
+    disable_channelization: 'False'
+    disable_drift_correction: 'False'
+    implicit: 'False'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    reduced_rate: 'False'
+    samp_rate: samp_rate
+    sf: spreadf
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [408, 174]
+    rotation: 0
+    state: enabled
+- name: lora_lora_receiver_0_0
+  id: lora_lora_receiver
+  parameters:
+    affinity: ''
+    alias: ''
+    bandwidth: int(bandw)
+    center_freq: 868e6
+    channel_list: 868e6
+    comment: ''
+    conj: 'True'
+    cr: '4'
+    crc: 'True'
+    decimation: '1'
+    disable_channelization: 'False'
+    disable_drift_correction: 'False'
+    implicit: 'False'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    reduced_rate: 'False'
+    samp_rate: samp_rate
+    sf: spreadf
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [407, 336]
+    rotation: 0
+    state: enabled
+- name: lora_message_socket_sink_0
+  id: lora_message_socket_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    ip: 127.0.0.1
+    layer: '1'
+    port: '40868'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [653, 206]
+    rotation: 0
+    state: enabled
+- name: lora_message_socket_sink_0_0
+  id: lora_message_socket_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    ip: 127.0.0.1
+    layer: '1'
+    port: '40868'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [653, 368]
+    rotation: 0
+    state: enabled
+- name: pad_source_0
+  id: pad_source
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    label: in
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_streams: '1'
+    optional: 'False'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [168, 240]
+    rotation: 0
+    state: true
+- name: samp_rate
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: ''
+    short_id: ''
+    type: ''
+    value: 2e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [176, 9]
+    rotation: 0
+    state: true
+- name: spreadf
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: ''
+    short_id: ''
+    type: ''
+    value: '7'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [265, 9]
+    rotation: 0
+    state: true
+
+connections:
+- [lora_lora_receiver_0, frames, lora_message_socket_sink_0, in]
+- [lora_lora_receiver_0_0, frames, lora_message_socket_sink_0_0, in]
+- [pad_source_0, '0', lora_lora_receiver_0, '0']
+- [pad_source_0, '0', lora_lora_receiver_0_0, '0']
+
+metadata:
+  file_format: 1
