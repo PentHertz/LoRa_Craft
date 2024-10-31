@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
-"""
-    Copyright (C) 2020  Sebastien Dudek (@FlUxIuS)
-    initially developed @PentHertz
-    and improved at @Trend Micro
-"""
+#    LoRa Scapy layers
+#    Copyright (C) 2020  Sebastien Dudek (@FlUxIuS) initially developped @PentHertz
+#    And improve at @Trend Micro
 
 from scapy.packet import Packet
 from scapy.fields import BitField, ByteEnumField, ByteField, \
@@ -352,7 +350,7 @@ class ForceRejoinReq(Packet):
     fields_desc = [BitField("RFU", 0, 2),
                    BitField("Period", 0, 3),
                    BitField("Max_Retries", 0, 3),
-                   BitField("RFU", 0, 1),
+                   BitField("RFU_2", 0, 1),
                    BitField("RejoinType", 0, 3),
                    BitField("DR", 0, 4)]
 
@@ -503,6 +501,7 @@ class MACCommand_down(Packet):
                                     lambda pkt:(pkt.CID == 0x0F))]
 
 
+
 class FOpts(Packet):
     name = "FOpts"
     fields_desc = [ConditionalField(PacketListField("FOpts_up", b"",
@@ -523,7 +522,7 @@ class FOpts(Packet):
 
 def FOptsDownShow(pkt):
     try:
-        if pkt.FCtrl[0].FOptsLen > 0 and pkt.MType & 0b1 == 1 and pkt.MType <= 0b101 and (pkt.MType & 0b101 > 0):  # noqa: E501
+        if pkt.FCtrl[0].FOptsLen > 0 and pkt.MType & 0b1 == 1 and pkt.MType <= 0b101 and (pkt.MType & 0b10 > 0):  # noqa: E501
             return True
         return False
     except Exception:
@@ -532,7 +531,7 @@ def FOptsDownShow(pkt):
 
 def FOptsUpShow(pkt):
     try:
-        if pkt.FCtrl[0].FOptsLen > 0 and pkt.MType & 0b1 == 0 and pkt.MType >= 0b010 and (pkt.MType & 0b110 > 0):  # noqa: E501
+        if pkt.FCtrl[0].FOptsLen > 0 and pkt.MType & 0b1 == 0 and pkt.MType >= 0b010 and (pkt.MType & 0b10 > 0):  # noqa: E501
             return True
         return False
     except Exception:
@@ -548,11 +547,19 @@ class FHDR(Packet):
                    ConditionalField(PacketListField("FCtrl", b"",
                                                     FCtrl_Link,
                                                     length_from=lambda pkt:1),
-                                    lambda pkt:((pkt.MType & 0b1 == 1 and
-                                                pkt.MType <= 0b101 and
-                                                (pkt.MType & 0b10 > 0)) or
+                                    lambda pkt:((pkt.MType & 0b1 == 1 and pkt.MType <= 0b101 and (pkt.MType & 0b10 > 0)) or 
                                                 (pkt.MType & 0b1 == 0 and
                                                 pkt.MType >= 0b010))),
+                   #ConditionalField(PacketListField("FCtrl", b"",
+                   #                                 FCtrl_DownLink,
+                   #                                 length_from=lambda pkt:1),
+                   #                 lambda pkt:(pkt.MType & 0b1 == 1 and
+                   #                             pkt.MType <= 0b101)),
+                   #ConditionalField(PacketListField("FCtrl", b"",
+                   #                                 FCtrl_UpLink,
+                   #                                 length_from=lambda pkt:1),
+                   #                 lambda pkt:(pkt.MType & 0b1 == 0 and
+                   #                             pkt.MType >= 0b010)),
                    ConditionalField(LEShortField("FCnt", 0),
                                     lambda pkt:(pkt.MType >= 0b010 and
                                                 pkt.MType <= 0b101)),
@@ -650,6 +657,10 @@ class MACPayload(Packet):
                                                 pkt.MType <= 0b101 and
                                                 pkt.FCtrl[0].FOptsLen == 0)),
                    FRMPayload]
+
+    def __init__(self, packet=""):
+        print (packet)
+        return super(ModulePIB,self).__init__(packet)
 
 
 MTypes = {0b000: "Join-request",
