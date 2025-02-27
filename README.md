@@ -61,7 +61,7 @@ And start to fill it.
 After crafting your packet, you can use [python-loranode](https://github.com/rpp0/python-loranode) as follows:
 
 ```python
->>> from binascii
+>>> import binascii
 >>> from loranode import RN2483Controller
 >>> to_send = binascii.hexlify(str(pkt))[3:]
 >>> c = RN2483Controller("/dev/ttyACM0")  # Choose the correct /dev device here
