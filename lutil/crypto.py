@@ -3,6 +3,7 @@
 
 from Crypto.Cipher import AES
 from Crypto.Hash import CMAC
+from Crypto.Util.Padding import pad
 import binascii
 
 
