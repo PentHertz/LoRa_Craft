@@ -48,7 +48,7 @@ def decodePHY(pkt):
             savePCAP(pkt)
 
         if cur_AppSKey is not None:
-            print (Fore.WHITE+Style.BRIGHT + "Deciphered Payload: ", decryptFRMPayload_1_0(binascii.unhexlify(cur_AppSKey), bytes(decoded), direction=direction), Style.RESET_ALL)
+            print (Fore.WHITE+Style.BRIGHT + "Deciphered Payload: ", decryptFRMPayload(binascii.unhexlify(cur_AppSKey), bytes(decoded), direction=direction), Style.RESET_ALL)
 
 
 def filterpkt(pkt, port):
